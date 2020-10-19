@@ -1,7 +1,7 @@
 
 ## Global Angels
 
-is a web api helps with resources & dashboard to manage shoopers & angels to deliver products to the customers
+is a web api helps with resources & dashboard to manage shoppers & angels to deliver products to the customers
 
 
 
