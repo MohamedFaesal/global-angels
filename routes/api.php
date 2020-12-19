@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('x:sss')->get('/x', function (Request $request) {
-    return "view";
+Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@login');
+Route::middleware('auth:api')->prefix('/')->group(function (){
+    Route::get('/profile', 'Api\AuthController@profile');
+    Route::post('/logout', 'Api\AuthController@logout');
 });
