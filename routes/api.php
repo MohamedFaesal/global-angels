@@ -21,6 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/', function () {
     return "working...";
 });
+Route::get('/countries', 'Api\CountryController@countries');
+Route::get('/countries/{country}/states', 'Api\CountryController@states');
+
 Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 Route::middleware('auth:api')->prefix('/')->group(function (){

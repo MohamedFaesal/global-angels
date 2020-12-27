@@ -20,14 +20,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('age');
-            $table->string('country')->index();
-            $table->string('city')->index();
+            $table->string('country_id')->index();
+            $table->string('state_id')->index();
             $table->string('phone')->index()->unique();
             $table->enum('gender', \App\Utils\UserGender::getGenders());
             $table->enum('user_type', \App\Utils\UserType::getTypes())->index();
             $table->string('email')->nullable()->index()->unique();
             $table->string('facebook_id')->unique();
-            $table->string('facebook_token', 250)->unique();
+            $table->string('facebook_token', 250);
             $table->string('home_phone')->nullable();
             $table->string('address')->nullable();
             $table->text('photo')->nullable();

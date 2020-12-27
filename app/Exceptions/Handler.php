@@ -55,9 +55,8 @@ class Handler extends ExceptionHandler
         }
         $status = 500;
         return response()->json([
-            'businessError' => $exception->getMessage(),
-            'error' => 'sss',
-            'data' => '',
+            'status' => $status,
+            'error' => $exception->getMessage()
         ], $status);
     }
 }

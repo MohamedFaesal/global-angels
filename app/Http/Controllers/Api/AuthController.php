@@ -60,8 +60,8 @@ class AuthController extends Controller
 
         $newUserData = [
             'age' => $request->input('age'),
-            'country' => $request->input('country'),
-            'city' => $request->input('city'),
+            'country_id' => $request->input('country'),
+            'state_id' => $request->input('city'),
             'user_type' => $request->input('user_type'),
             'gender' => $request->input('gender'),
             'name' => $request->input('name', $facebookUser->getName()),
