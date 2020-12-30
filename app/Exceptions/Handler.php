@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if (!$request->isJson()) {
+        if (!($request->ajax() || $request->wantsJson())) {
             return parent::render($request, $exception);
         }
         $status = $exception->getCode() ?? 500;
