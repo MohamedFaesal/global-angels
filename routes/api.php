@@ -30,3 +30,8 @@ Route::middleware('auth:api')->prefix('/')->group(function (){
     Route::get('/profile', 'Api\AuthController@profile');
     Route::post('/logout', 'Api\AuthController@logout');
 });
+
+Route::prefix('/products')->group(function (){
+    Route::get('/online-store', 'Api\ProductController@index');
+    Route::get('/{id}', 'Api\ProductController@profile');
+});

@@ -12,7 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function success($data = [], $message = "success")
+    public function success($data = [], $message = "success", array $additionalData = [])
     {
         if (!is_array($data)) {
             if ($data instanceof JsonResource) {
@@ -21,12 +21,15 @@ class Controller extends BaseController
                 $data = $data->toArray();
             }
         }
-
-        return response()->json([
+        $response = [
             'status' => 200,
             'message' => $message,
             'data' => $data
-        ], 200);
+        ];
+        if ($additionalData) {
+            $response = array_merge($response, $additionalData);
+        }
+        return response()->json($response, 200);
     }
 
     public function failed($message = null, $status = 400, $data = [])

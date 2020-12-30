@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->enum('gender', \App\Utils\UserGender::getGenders());
             $table->enum('user_type', \App\Utils\UserType::getTypes())->index();
             $table->string('email')->nullable()->index()->unique();
+            $table->string('password')->nullable()->index();
             $table->string('facebook_id')->unique();
             $table->string('facebook_token', 250);
             $table->string('home_phone')->nullable();
