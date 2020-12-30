@@ -13,10 +13,10 @@ class RegistrationRequest extends BaseRequest
     {
         return [
             'facebook_token' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|string|unique:users',
             'age' => 'required|integer',
-            'country_id' => 'required|string',
-            'state_id' => 'required|string',
+            'country_id' => 'required|integer',
+            'state_id' => 'required|integer',
             'user_type' => 'required|string',
             'gender' => 'required|string',
             'name' => 'nullable|string',

@@ -57,21 +57,23 @@ class AuthController extends Controller
         } catch (\Exception $ex) {
             throw new \Exception('Not valid facebook profile');
         }
-
-        $newUserData = [
-            'age' => $request->input('age'),
-            'country_id' => $request->input('country'),
-            'state_id' => $request->input('city'),
-            'user_type' => $request->input('user_type'),
-            'gender' => $request->input('gender'),
-            'name' => $request->input('name', $facebookUser->getName()),
-            'email' => $request->input('email', $facebookUser->getEmail()),
-            'photo' => $request->input('photo', $facebookUser->getAvatar()),
-            'phone' => $request->input('phone'),
-            'facebook_token' => $token,
-            'facebook_id' => $facebookUser->getId(),
-        ];
-        $user = User::create($newUserData);
+        $user = User::where("facebook_token", $token)->first();
+        if(!$user) {
+            $newUserData = [
+                'age' => $request->input('age'),
+                'country_id' => $request->input('country_id'),
+                'state_id' => $request->input('state_id'),
+                'user_type' => $request->input('user_type'),
+                'gender' => $request->input('gender'),
+                'name' => $request->input('name', $facebookUser->getName()),
+                'email' => $request->input('email', $facebookUser->getEmail()),
+                'photo' => $request->input('photo', $facebookUser->getAvatar()),
+                'phone' => $request->input('phone'),
+                'facebook_token' => $token,
+                'facebook_id' => $facebookUser->getId(),
+            ];
+            $user = User::create($newUserData);
+        }
         $accessToken = $user->createToken('GlobalAngels')->accessToken;
         return $this->success(['token' => $accessToken],'New user has been registered');
     }

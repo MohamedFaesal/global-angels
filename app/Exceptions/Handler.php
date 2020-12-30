@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,13 +51,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if (!($request->ajax() || $request->wantsJson())) {
+        if (!($request->ajax() || $request->expectsJson())) {
             return parent::render($request, $exception);
         }
-        $status = $exception->getCode() ?? 500;
-        return response()->json([
+        $status = $exception->getCode() ? $exception->getCode() : 500;
+        return Response::json([
             'status' => $status,
-            'error' => $exception->getMessage()
+            'message' => $exception->getMessage(),
+            'trace' => $exception->getTrace()
         ], $status);
     }
 }
