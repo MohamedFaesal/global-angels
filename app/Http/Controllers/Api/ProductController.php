@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CountryResource;
 use App\Http\Resources\ProductResource;
+use App\Http\Resources\ShipmentFitResource;
 use App\Http\Resources\StateResource;
 use App\Models\Country;
 use App\Models\Product;
+use App\Models\ShipmentFit;
 use App\Utils\ProductTypeUtil;
 
 /**
@@ -39,5 +41,10 @@ class ProductController extends Controller
             new ProductResource($product),
             'products fetched successfully'
         );
+    }
+
+    public function shipmentFits()
+    {
+        return $this->success(ShipmentFitResource::collection(ShipmentFit::all()));
     }
 }

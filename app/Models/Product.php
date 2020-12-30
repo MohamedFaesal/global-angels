@@ -17,4 +17,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function shipmentFits()
+    {
+        return $this->belongsToMany(
+            ShipmentFit::class,
+            'product_fits',
+            'product_id',
+            'shipment_fit_id'
+        );
+    }
 }

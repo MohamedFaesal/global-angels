@@ -13,7 +13,7 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'category' => $this->category->name,
+            'category' => new CategoryResource($this->category),
             'description' => $this->description,
             'type' => $this->type,
             'affiliate_link' => $this->affiliate_link,
@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'weight' => $this->weight,
             'weight_type' => $this->weight_type,
+            'shipment_fits' => ShipmentFitResource::collection($this->shipmentFits),
             'images' => [
                 $this->main_image,
                 $this->main_image,

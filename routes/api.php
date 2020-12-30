@@ -35,3 +35,4 @@ Route::prefix('/products')->group(function (){
     Route::get('/online-store', 'Api\ProductController@index');
     Route::get('/{id}', 'Api\ProductController@profile');
 });
+Route::get('/shipment/fit/types', 'Api\ProductController@shipmentFits');

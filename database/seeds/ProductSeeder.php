@@ -69,7 +69,17 @@ class ProductSeeder extends Seeder
             ],
         ];
         foreach ($data as $datum) {
-            \App\Models\Product::create($datum);
+            $product = \App\Models\Product::create($datum);
+            \Illuminate\Support\Facades\DB::table('product_fits')->insert([
+                [
+                    'product_id' => $product->id,
+                    'shipment_fit_id' => $count = 1,
+                ],
+                [
+                    'product_id' => $product->id,
+                    'shipment_fit_id' => $count = random_int(2, 3),
+                ],
+            ]);
         }
     }
 }
