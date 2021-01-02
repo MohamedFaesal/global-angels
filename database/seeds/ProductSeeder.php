@@ -67,19 +67,63 @@ class ProductSeeder extends Seeder
                 'weight_type' => 'pounds',
                 'main_image' => 'https://images-na.ssl-images-amazon.com/images/I/41wDuEW9iZL._AC_.jpg'
             ],
+            [
+                'name' => 'Fitbit Versa 2 40mm Smartwatch with Amazon Alexa & Heart Rate Tracking - Black',
+                'category_id' => 1,
+                'description' => 'Reach your physical fitness goals in style with the Fitbit Versa 2 smartwatch. It automatically tracks your calories burned, steps taken, heart rate, sleeping patterns, and more. It helps keep you in the loop by wirelessly syncing with your smartphone for at-a-glance notifications from texts, emails, social media, and your calendar.',
+                'type' => ProductTypeUtil::ONLINE_STORE,
+                'affiliate_link' => 'https://www.bestbuy.ca/en-ca/product/fitbit-versa-2-40mm-smartwatch-with-amazon-alexa-heart-rate-tracking-black/13864604',
+                'source' => ProductSourceUtil::BEST_BUY,
+                'source_id' => '13864604',
+                'price' => 199.99,
+                'weight' => '40',
+                'weight_type' => 'gram',
+                'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/138/13864/13864604.jpg'
+            ],
+            [
+                'name' => 'Apple MacBook Pro w/ Touch Bar (2019 Model) 13.3" - Space Grey (Intel Core i5 1.4GHz / 128GB SSD / 8GB RAM) - Eng - Open Box',
+                'category_id' => 2,
+                'description' => 'The 13-inch MacBook Pro packs powerful processors, a super-fast SSD, all-day battery life and the best Mac notebook display ever into a portable 3-pound design. It adds the latest quad-core processors for faster performance, Touch Bar and Touch ID, True Tone to the brilliant Retina display, the Apple T2 Security Chip and immersive stereo speakers.',
+                'type' => ProductTypeUtil::ONLINE_STORE,
+                'affiliate_link' => 'https://www.bestbuy.ca/en-ca/product/apple-macbook-pro-w-touch-bar-2019-model-13-3-space-grey-intel-core-i5-1-4ghz-128gb-ssd-8gb-ram-eng-open-box/14539148?icmp=Recos_3across_tp_sllng_prdcts&referrer=PLP_Reco',
+                'source' => ProductSourceUtil::BEST_BUY,
+                'source_id' => '14539148',
+                'price' => 1299.99,
+                'weight' => '6.6',
+                'weight_type' => 'lbs',
+                'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/145/14539/14539148.jpg'
+            ],
+            [
+                'name' => 'Viking Windigo Pants (920P-L) - Large - Black',
+                'category_id' => 6,
+                'description' => 'Viking Windigo Pants feature two zippered pockets and one back storage pocket. When the temperature starts to rise, easily fold the pants into the front left pocket for quick storage. Fully lined for comfort and ventilation, Windigo Pants are perfect for any outdoors activity.',
+                'type' => ProductTypeUtil::ONLINE_STORE,
+                'affiliate_link' => 'https://www.bestbuy.ca/en-ca/product/viking-viking-windigo-pants-920p-l-large-black-920p-l/10184417',
+                'source' => ProductSourceUtil::BEST_BUY,
+                'source_id' => '10184417',
+                'price' => 64.99,
+                'weight' => '',
+                'weight_type' => '',
+                'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/500x500/101/10184/10184417.jpg'
+            ],
         ];
-        foreach ($data as $datum) {
-            $product = \App\Models\Product::create($datum);
-            \Illuminate\Support\Facades\DB::table('product_fits')->insert([
-                [
-                    'product_id' => $product->id,
-                    'shipment_fit_id' => $count = 1,
-                ],
-                [
-                    'product_id' => $product->id,
-                    'shipment_fit_id' => $count = random_int(2, 3),
-                ],
-            ]);
+        for ($i = 1; $i <= 40; $i++) {
+            foreach ($data as $datum) {
+                if ($i > 10) {
+                    $datum['type'] = ProductTypeUtil::PRE_ORDERS;
+                }
+                $product = \App\Models\Product::create($datum);
+                \Illuminate\Support\Facades\DB::table('product_fits')->insert([
+                    [
+                        'product_id' => $product->id,
+                        'shipment_fit_id' => 1,
+                    ],
+                    [
+                        'product_id' => $product->id,
+                        'shipment_fit_id' => random_int(2, 3),
+                    ],
+                ]);
+            }
         }
     }
 }

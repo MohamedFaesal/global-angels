@@ -11,6 +11,7 @@ use App\Models\Country;
 use App\Models\Product;
 use App\Models\ShipmentFit;
 use App\Utils\ProductTypeUtil;
+use Illuminate\Http\Request;
 
 /**
  * Class ProductController
@@ -18,9 +19,18 @@ use App\Utils\ProductTypeUtil;
  */
 class ProductController extends Controller
 {
-    public function index()
+    public function onlineStore(Request $request)
     {
-        $products = Product::where('type', ProductTypeUtil::ONLINE_STORE)->paginate(10);
+        return $this->getProducts(ProductTypeUtil::ONLINE_STORE, $request);
+    }
+
+    public function preOrderStore(Request $request)
+    {
+        return $this->getProducts(ProductTypeUtil::PRE_ORDERS, $request);
+    }
+
+    public function getProducts($type, $request) {
+        $products = Product::where('type', $type)->paginate(10);
         return $this->success(
             ProductResource::collection($products),
             'products fetched successfully',
@@ -29,8 +39,8 @@ class ProductController extends Controller
                 'previousPageUrl' => $products->previousPageUrl()
             ]
         );
-    }
 
+    }
     public function profile($id)
     {
         $product = Product::find($id);

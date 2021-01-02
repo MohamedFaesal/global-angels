@@ -32,7 +32,8 @@ Route::middleware('auth:api')->prefix('/')->group(function (){
 });
 
 Route::prefix('/products')->group(function (){
-    Route::get('/online-store', 'Api\ProductController@index');
+    Route::get('/online-store', 'Api\ProductController@onlineStore');
+    Route::get('/pre-order-store', 'Api\ProductController@preOrderStore');
     Route::get('/{id}', 'Api\ProductController@profile');
 });
 Route::get('/shipment/fit/types', 'Api\ProductController@shipmentFits');
