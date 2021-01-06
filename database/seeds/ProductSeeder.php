@@ -28,8 +28,8 @@ class ProductSeeder extends Seeder
                 'source_id' => 'B07RF1XD36',
                 'price' => 364.99,
                 'weight' => '3.97',
-                'weight_type' => 'lbs',
-                'main_image' => 'https://images-na.ssl-images-amazon.com/images/I/71vvXGmdKWL._AC_SL1500_.jpg'
+                'weight_unit' => \App\Utils\WeightUnitUtil::POUNDS,
+                //'main_image' => 'https://images-na.ssl-images-amazon.com/images/I/71vvXGmdKWL._AC_SL1500_.jpg'
             ],
             [
                 'name' => 'HP 24mh FHD Monitor',
@@ -47,8 +47,8 @@ class ProductSeeder extends Seeder
                 'source_id' => 'B08BF4CZSV',
                 'price' => 164.99,
                 'weight' => '9.94',
-                'weight_type' => 'pounds',
-                'main_image' => 'https://images-na.ssl-images-amazon.com/images/I/91fAU6mxFsL._AC_SL1500_.jpg'
+                'weight_unit' => \App\Utils\WeightUnitUtil::POUNDS,
+                //'main_image' => 'https://images-na.ssl-images-amazon.com/images/I/91fAU6mxFsL._AC_SL1500_.jpg'
             ],
             [
                 'name' => 'Apple iPhone 11 Pro, 64GB, Space Gray - Fully Unlocked (Renewed)',
@@ -64,8 +64,8 @@ class ProductSeeder extends Seeder
                 'source_id' => 'B07ZPKZSSC',
                 'price' => 669.99,
                 'weight' => '1.01',
-                'weight_type' => 'pounds',
-                'main_image' => 'https://images-na.ssl-images-amazon.com/images/I/41wDuEW9iZL._AC_.jpg'
+                'weight_unit' => \App\Utils\WeightUnitUtil::POUNDS,
+                //'main_image' => 'https://images-na.ssl-images-amazon.com/images/I/41wDuEW9iZL._AC_.jpg'
             ],
             [
                 'name' => 'Fitbit Versa 2 40mm Smartwatch with Amazon Alexa & Heart Rate Tracking - Black',
@@ -77,8 +77,8 @@ class ProductSeeder extends Seeder
                 'source_id' => '13864604',
                 'price' => 199.99,
                 'weight' => '40',
-                'weight_type' => 'gram',
-                'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/138/13864/13864604.jpg'
+                'weight_unit' => \App\Utils\WeightUnitUtil::GRAM,
+                //'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/138/13864/13864604.jpg'
             ],
             [
                 'name' => 'Apple MacBook Pro w/ Touch Bar (2019 Model) 13.3" - Space Grey (Intel Core i5 1.4GHz / 128GB SSD / 8GB RAM) - Eng - Open Box',
@@ -90,8 +90,8 @@ class ProductSeeder extends Seeder
                 'source_id' => '14539148',
                 'price' => 1299.99,
                 'weight' => '6.6',
-                'weight_type' => 'lbs',
-                'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/145/14539/14539148.jpg'
+                'weight_unit' => \App\Utils\WeightUnitUtil::POUNDS,
+                //'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/145/14539/14539148.jpg'
             ],
             [
                 'name' => 'Viking Windigo Pants (920P-L) - Large - Black',
@@ -102,9 +102,9 @@ class ProductSeeder extends Seeder
                 'source' => ProductSourceUtil::BEST_BUY,
                 'source_id' => '10184417',
                 'price' => 64.99,
-                'weight' => '',
-                'weight_type' => '',
-                'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/500x500/101/10184/10184417.jpg'
+                'weight' => 99,
+                'weight_unit' => \App\Utils\WeightUnitUtil::GRAM,
+                //'main_image' => 'https://multimedia.bbycastatic.ca/multimedia/products/500x500/101/10184/10184417.jpg'
             ],
         ];
         for ($i = 1; $i <= 40; $i++) {

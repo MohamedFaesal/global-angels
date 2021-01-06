@@ -12,7 +12,7 @@ class LoginRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'facebook_token' => 'required',
+            'social_token' => 'required|string',
         ];
     }
 }

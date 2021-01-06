@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Utils\UserSocialType;
+
 class RegistrationRequest extends BaseRequest
 {
     /**
@@ -12,15 +14,9 @@ class RegistrationRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'facebook_token' => 'required',
-            'phone' => 'required|string|unique:users',
-            'age' => 'required|integer',
-            'country_id' => 'required|integer',
-            'state_id' => 'required|integer',
-            'user_type' => 'required|string',
-            'gender' => 'required|string',
-            'name' => 'nullable|string',
-            'email' => 'nullable|string'
+            'social_token' => 'required',
+            'phone' => 'required|string',
+            'social_type' => 'required|string|in:' . implode(',', UserSocialType::getTypes())
         ];
     }
 }

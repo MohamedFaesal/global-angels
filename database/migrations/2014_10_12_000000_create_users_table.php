@@ -13,24 +13,18 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        /**
-        Facebook Account
-         */
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('age');
-            $table->string('country_id')->index();
-            $table->string('state_id')->index();
+            $table->string('name')->nullable();
+            $table->integer('age')->nullable();
             $table->string('phone')->index()->unique();
-            $table->enum('gender', \App\Utils\UserGender::getGenders());
-            $table->enum('user_type', \App\Utils\UserType::getTypes())->index();
+            $table->enum('gender', \App\Utils\UserGender::getGenders())->nullable();
             $table->string('email')->nullable()->index()->unique();
             $table->string('password')->nullable()->index();
-            $table->string('facebook_id')->unique();
-            $table->string('facebook_token', 250);
+            $table->enum('social_type', \App\Utils\UserSocialType::getTypes())->index();
+            $table->string('social_id')->index();
+            $table->string('social_token', 1000)->nullable();
             $table->string('home_phone')->nullable();
-            $table->string('address')->nullable();
             $table->text('photo')->nullable();
             $table->timestamp('phone_verified_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();

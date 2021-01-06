@@ -35,4 +35,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
+    }
 }
